@@ -86,3 +86,29 @@ app.patch('/orders/:id', async(req,res) => {
     }
 })
 
+app.patch('/orders-item/:id', async (req, res) => {
+    try {
+      const { id } = req.params; // The order ID
+      const { menuItem } = req.body; // The menuItem to delete
+  
+      const order = await Order.findByIdAndUpdate(
+        id,
+        {
+          $pull: {
+            items: { menuItem: menuItem }, // Condition to match the item to remove
+          },
+        },
+        { new: true } // Return the updated document
+      );
+  
+      if (!order) {
+        return res.status(404).json({ message: `Cannot find any order with ID ${id}` });
+      }
+  
+      res.status(200).json(order);
+    } catch (error) {
+      console.error("Error deleting item:", error.message);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
