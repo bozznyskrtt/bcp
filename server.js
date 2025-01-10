@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const pool = require('./sql_conn/sqlconn'); 
 const Order = require('./model/ordermodel');
-
+const apidbRoutes = require('./Route/route');
 app.use(express.json());
 //routes
 mongoose.connect('mongodb+srv://bcpchapter2403:bosscaptainpear2403@bcp.mpfij.mongodb.net/KitchenOrder?retryWrites=true&w=majority&appName=bcp')
@@ -85,4 +86,6 @@ app.patch('/orders/:id', async(req,res) => {
         res.status(500).json({message: error.message});
     }
 })
+
+app.use('/api', apidbRoutes); // Mount the router at /api
 

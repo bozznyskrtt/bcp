@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 // Create a connection to the Azure MySQL database
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
   host: 'posdb.mysql.database.azure.com', // Azure MySQL hostname
   user: 'postest',           // Include `@hostname` with the username
   password: 'Bcptest123',                     // Your Azure MySQL password
@@ -13,7 +13,8 @@ const connection = mysql.createConnection({
 });
 
 // Connect to the database
-connection.connect((err) => {
+/*
+connection.pool((err) => {
   if (err) {
     console.error('Error connecting to the database:', err.message);
     return;
@@ -22,4 +23,5 @@ connection.connect((err) => {
 });
 
 // Export the connection for use in other modules
+*/
 module.exports = connection;
