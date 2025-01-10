@@ -1,0 +1,77 @@
+<!-- HTML File: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="order-container">
+        <h1>Restaurant Menu</h1>
+        
+        <h2>Food</h2>
+        <div id="foodItems">
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/80" alt="Pizza">
+                <div class="menu-details">
+                    <h3>Pizza</h3>
+                    <p>Delicious cheese pizza with a crispy crust.</p>
+                </div>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity('pizza', -1)">-</button>
+                    <span id="pizzaQuantity" class="quantity">0</span>
+                    <button onclick="updateQuantity('pizza', 1)">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/80" alt="Burger">
+                <div class="menu-details">
+                    <h3>Burger</h3>
+                    <p>Juicy beef burger with fresh toppings.</p>
+                </div>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity('burger', -1)">-</button>
+                    <span id="burgerQuantity" class="quantity">0</span>
+                    <button onclick="updateQuantity('burger', 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>Beverages</h2>
+        <div id="beverageItems">
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/80" alt="Cola">
+                <div class="menu-details">
+                    <h3>Cola</h3>
+                    <p>Refreshing cola with a fizzy twist.</p>
+                </div>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity('cola', -1)">-</button>
+                    <span id="colaQuantity" class="quantity">0</span>
+                    <button onclick="updateQuantity('cola', 1)">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/80" alt="Juice">
+                <div class="menu-details">
+                    <h3>Juice</h3>
+                    <p>Freshly squeezed orange juice.</p>
+                </div>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity('juice', -1)">-</button>
+                    <span id="juiceQuantity" class="quantity">0</span>
+                    <button onclick="updateQuantity('juice', 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-button">
+            <button onclick="submitOrder()">Submit Order</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
