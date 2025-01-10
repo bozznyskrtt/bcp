@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Orders</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .order-list {
+            margin-top: 20px;
+            background: #f7f9fb;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .order {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .order h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .order p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .order button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .order button:hover {
+            background-color: #c0392b;
+        }
+
+        .order button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kitchen Orders</h1>
+        <div id="orderList" class="order-list"></div>
+    </div>
+
+    <script>
+        const orders = JSON.parse(localStorage.getItem('restaurantOrders')) || [];
+
+        function displayOrders() {
+            const orderList = document.getElementById('orderList');
+            orderList.innerHTML = '';
+
+            if (orders.length === 0) {
+                orderList.innerHTML = '<p>No orders in the kitchen.</p>';
+                return;
+            }
+
+            orders.forEach((order, index) => {
+                const orderDiv = document.createElement('div');
+                orderDiv.className = 'order';
+
+                const items = order.items.map(item => `<li>${item.name} (x${item.quantity})</li>`).join('');
+
+                orderDiv.innerHTML = `
+                    <h3>Table ${order.tableNumber}</h3>
+                    <p>Order Details:</p>
+                    <ul>${items}</ul>
+                    <button onclick="finishOrder(${index})">Finish</button>
+                `;
+
+                orderList.appendChild(orderDiv);
+            });
+        }
+
+        function finishOrder(index) {
+            orders.splice(index, 1);
+            saveOrders();
+            displayOrders();
+        }
+
+        function saveOrders() {
+            localStorage.setItem('restaurantOrders', JSON.stringify(orders));
+        }
+
+        document.addEventListener('DOMContentLoaded', displayOrders);
+    </script>
+</body>
+</html>
