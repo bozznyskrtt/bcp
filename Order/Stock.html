@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Stock Management</title>
+    <link rel="stylesheet" href="Stock.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurant Stock Management</h1>
+        <div id="stockList" class="stock-list"></div>
+        <form id="addItemForm">
+            <input type="text" id="newItemName" placeholder="Item Name" required />
+            <input type="number" id="newItemQuantity" placeholder="Quantity" min="0" required />
+            <input type="text" id="newItemDescription" placeholder="Description" required />
+            <input type="file" id="newItemImage" accept="image/*" required />
+            <button type="submit">Add Item</button>
+        </form>
+    </div>
+    <script src="Stock.js"></script>
+</body>
+</html>
